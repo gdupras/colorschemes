@@ -1,6 +1,4 @@
 " Usage:
-"     $ vim -Nu NONE -S colors/tools/sample_terminal.vim +source\ colors/blue.vim
-set nocompatible
+"     $ vim --clean -c "set termguicolors" -S colors/blue.vim -S colors/tools/sample_terminal.vim
 set laststatus=2
-syntax on
-autocmd! VimEnter * execute 'terminal msgcat --color=test' | only
+autocmd! VimEnter * execute 'terminal vim --clean -S colors/tools/sample_terminal_2.vim' | only
