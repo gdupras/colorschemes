@@ -1,17 +1,18 @@
 setl nowrap
 " TODO: Add default background.
 for i in range(0, 15)
-    let line = ''
+    let s:line = ''
     for j in range(0, 15)
-        let line = printf('%s%s%02d-%02d', line, j == 0 ? '' : ' ', i, j)
+        let s:line = printf('%s%s%02d-%02d', s:line, j == 0 ? '' : ' ', i, j)
     endfor
-    call setline(i+1, line)
+    call setline(i+1, s:line)
 endfor
 
 for i in range(0, 15)
     for j in range(0, 15)
-        execute printf('syntax match sampleColor%02d_%02d "%02d-%02d"', i, j, i, j)
-        execute printf('highlight sampleColor%02d_%02d ctermfg=%d ctermbg=%d', i, j, i, j)
+        let s:name = printf('sampleColor%02d_%02d', i, j)
+        call hlset([#{name: s:name, ctermfg: string(i), ctermbg: string(j)}])
+        call matchadd(s:name, printf('%02d-%02d', i, j))
     endfor
 endfor
 
